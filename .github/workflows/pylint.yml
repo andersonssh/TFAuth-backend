@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint pipenv && pipenv install -d
+        pip install pipenv && pipenv install && pipenv install -d
     - name: Analysing the code with pylint
       run: |
-        pylint *.py src tests
+        pipenv run pylint *.py src tests

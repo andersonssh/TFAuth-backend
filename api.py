@@ -1,3 +1,6 @@
+"""
+BfAuth API
+"""
 import os
 from flask import Flask
 from src.blueprints.code import code_bp
