@@ -3,14 +3,11 @@ utils related to http protocol
 """
 from types import FunctionType
 from functools import wraps
-from enum import Enum
 from flask import request
 from http import HTTPStatus as status_code
 import jsonschema
 
 MAX_CONTENT_LENGTH = 10**5
-
-
 
 
 def validate_content(schema: dict):
