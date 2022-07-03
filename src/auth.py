@@ -1,17 +1,27 @@
 """
 authentication module
 """
-import jwt
 import datetime
+import jwt
+from api import SECRET_KEY
 
 
 def token_generate(user: dict):
     """
-    #####################
-    """
-    exp = (datetime.datetime.now() + datetime.timedelta(seconds=20)).timestamp()
-    payload = {
-        key: value for key, value in user.items() if key in ('username',)
-    }
+    Gera o token JWT com informacoes do usuario
 
-    return jwt.encode(jwt)
+    Args:
+        user: dados do usuario
+
+    Returns:
+        str: token
+    """
+    exp = (datetime.datetime.now() + datetime.timedelta(days=1)).timestamp()
+
+    payload = {
+        key: value for key, value in user.items() if key in ('email',)
+    }
+    token_content = {'exp': exp}
+    token_content.update(payload)
+
+    return jwt.encode(token_content, key=SECRET_KEY, algorithm='HS256')

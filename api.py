@@ -1,5 +1,8 @@
+import os
 from flask import Flask
 from src.blueprints.code import code_bp
+
+SECRET_KEY = os.environ['SECRET_KEY']
 
 app = Flask(__name__)
 
