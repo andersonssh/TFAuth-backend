@@ -3,8 +3,8 @@ utils related to http protocol
 """
 from types import FunctionType
 from functools import wraps
-from flask import request
 from http import HTTPStatus as status_code
+from flask import request
 import jsonschema
 
 MAX_CONTENT_LENGTH = 10**5
