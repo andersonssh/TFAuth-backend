@@ -16,11 +16,13 @@ def token_generate(user: dict):
     Returns:
         str: token
     """
-    exp = (datetime.datetime.now() + datetime.timedelta(days=1)).timestamp()
+
+    exp = datetime.datetime.now() + datetime.timedelta(days=1)
 
     payload = {
         key: value for key, value in user.items() if key in ('email',)
     }
+
     token_content = {'exp': exp}
     token_content.update(payload)
 
