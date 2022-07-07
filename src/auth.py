@@ -18,10 +18,10 @@ def token_generate(user: dict):
     """
 
     exp = datetime.datetime.now() + datetime.timedelta(days=1)
+    payload = {}
 
-    payload = {
-        key: value for key, value in user.items() if key in ('email',)
-    }
+    if user.get('email'):
+        payload['email'] = user.get('email')
 
     token_content = {'exp': exp}
     token_content.update(payload)
