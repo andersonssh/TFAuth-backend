@@ -2,13 +2,13 @@
 authentication module
 """
 import datetime
-import jwt
+import utoken
 from api import SECRET_KEY
 
 
 def token_generate(user: dict):
     """
-    Gera o token JWT com informacoes do usuario
+    Gera o token com informacoes do usuario
 
     Args:
         user: dados do usuario
@@ -16,12 +16,14 @@ def token_generate(user: dict):
     Returns:
         str: token
     """
-    exp = (datetime.datetime.now() + datetime.timedelta(days=1)).timestamp()
 
-    payload = {
-        key: value for key, value in user.items() if key in ('email',)
-    }
-    token_content = {'exp': exp}
+    exp = datetime.datetime.now() + datetime.timedelta(days=1)
+    payload = {}
+
+    if user.get('email'):
+        payload['email'] = user.get('email')
+
+    token_content = {'max-time': exp}
     token_content.update(payload)
 
-    return jwt.encode(token_content, key=SECRET_KEY, algorithm='HS256')
+    return utoken.encode(token_content, SECRET_KEY)
